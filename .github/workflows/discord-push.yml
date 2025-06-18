@@ -14,8 +14,5 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{\"content\": \"☕️ *Frisch gebrühtes Update!*  
-👨‍💻 **${{ github.actor }}** sagt: _‘${{ github.event.head_commit.message }}’_  
-🔗 [Zum Repo](https://github.com/${{ github.repository }})\"}" \
+               -d "{\"content\": \"☕️ *Frisch gebrühtes Update!*\n👨‍💻 **${{ github.actor }}** sagt: _‘${{ github.event.head_commit.message }}’_\n🔗 https://github.com/${{ github.repository }}\"}" \
                https://discord.com/api/webhooks/1384963640070770708/L3UkaxT-yH1nZPE1_Y2PJU20xS-2Qud0p013NkJizy0WApkHIEVuZOVpcEncJvUVPmSx
-
