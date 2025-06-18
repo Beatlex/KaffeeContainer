@@ -14,7 +14,7 @@ jobs:
         run: |
           curl -H "Content-Type: application/json" \
                -X POST \
-               -d "{\"content\":  \"content\": \"☕️ *Frisch gebrühtes Update!* 
+               -d "{\"content\": \"☕️ *Frisch gebrühtes Update!* 
                      👨‍💻 **${{ github.actor }}** sagt: _‘${{ github.event.head_commit.message }}’_  
                  🔗 [Zum Repo](https://github.com/${{ github.repository }})\"
                }" \                             \
