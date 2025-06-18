@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main  # Oder der Branch, den du überwachen willst
-      - review
+      - Review
       
 jobs:
   notify:
