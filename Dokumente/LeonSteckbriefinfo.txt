@@ -1,6 +1,0 @@
-Vorname / Nachname: Leon Nöth
-Geburtsdatum: 10.06.1997
-Wohnort: Kützberg
-Beruf / Berufswunsch: Softwareentwickler, Wunschberuf
-IT-Forensiker
-Rolle im Projekt: Projektleitung
