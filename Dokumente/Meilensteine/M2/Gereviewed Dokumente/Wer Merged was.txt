@@ -1,0 +1,13 @@
+Wer Merged was ?
+Betriebskonzept			Review (Kai)		zusammenführen(Marc)
+Notfallkonzept			Review (Leon)		mergen(Sebastian)
+Pflichtenheft 			Review (Leon)		Bearbeiten  (jeder)
+Qualifizierungskonuept		Review (Leon)		merge (Sebastian)
+Test und Abnahmeplan		Review (Marc)		mergen(Kai)
+
+Beschaffungsliste (Leon)
+Kostenressourcenplan (Marc)
+Changetracking Review(Leon)
+Risiko Review(Marc)
+Entwicklungsumgebung & Repo einrichten Dokumentieren Review(Sebastian)
+Terminplan Review(Kai)
