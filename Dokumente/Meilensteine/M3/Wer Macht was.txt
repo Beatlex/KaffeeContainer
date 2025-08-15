@@ -1,0 +1,10 @@
+ Ziel des Projekts (S)
+ Erarbeitung des Lösungsweges: Benchmarking, Abgrenzung Ihres Vorgehens und der Wahl
+der Mittel von alternativen Lösungsmöglichkeiten, Begründung Ihres Ansatzes (S)
+ Präsentation der erarbeiteten Lösung -----
+ Zeitplan Soll/Ist (M)
+ Kosten- und Ressourcenplan Soll/Ist (K)
+ Migration zum Produktivbetrieb (M)
+ Nutzen für die auftraggebende Person/Organisation (L)
+ Weiteres Vorgehen (L)
+ Dokumenten Blaupause (K)
