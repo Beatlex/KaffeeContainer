@@ -1,0 +1,67 @@
+1) Backhaul / Bandbreite (Satellit, ggf. Mobilfunk)
+
+Problem: externe Anbindung (Starlink / Iridium / Mobilfunk) bestimmt oft die maximale Datenrate aller verbundenen Nutzer/Module.
+Typische Limite: Starlink-Standard: variabel — im Praxisbetrieb oft ~50–300 Mbps Down, 5–40 Mbps Up (stark standort- und Netzabhängig). Iridium: eher sehr gering (kbit/s).
+Auswirkung: Viele parallele Videoströme, Backups oder große Datenreplikationen können die Verbindung saturieren.
+Gegenmaßnahmen: QoS / Traffic-Shaping, Priorisierung (VoIP/TETRA>Management>Bulk), lokale Caching/Proxy, Offline-Synchronisation, zusätzliche Backhaul-Redundanz (zweiter Sat-Link, Mobilfunk).
+
+2) Latenz & Jitter
+
+Problem: Satelliten-Links (speziell geostationär) haben hohe RTT; Starlink hat moderatere Latenzen als GEO-Satelliten, aber spürbar höher als terrestrisch. Latenz beeinträchtigt interaktive Anwendungen (VoIP, Remote Desktop, Time-sensitive sync).
+Auswirkung: Verzögerte Sprachübertragung, schlechte UX bei Remote-CLI, Probleme bei zeitkritischen Protokollen.
+Gegenmaßnahmen: QoS (Priorisierung), lokale Services (lokaler SIP-Server, lokale Auth), Einsatz von Protokolloptimierungen (FEC, UDP tuning).
+
+3) Anzahl Clients / Konkurrierende Verbindungen (WLAN / AP / Switch)
+
+Problem: physikalische und prozessorische Grenzen von Access-Points und Switches.
+Richtwerte: Ein moderner UniFi-AP kann technisch 100+ Clients handlen, praktisch 20–50 simultane aktive Clients (je nach Nutzungsprofil) für akzeptable Performance. PoE-Switch: Portanzahl (z. B. 24 PoE-Ports) limitiert Anzahl verkabelter PoE-Devices.
+Auswirkung: hohe Airtime-Konkurrenz, niedrige Durchsätze pro Client, Roaming-Probleme.
+Gegenmaßnahmen: Lastverteilung (mehr APs), Kanalplanung, Bandbreitenlimits pro Client, Multi-SSID mit Verschlüsselung/Client-Isolation, Upgrade auf managed high-density APs.
+
+4) PoE-Leistung / Strombudget
+
+Problem: PoE-Switches haben ein Gesamtleistungsbudget (z. B. 370 W). Viele Kameras/VoIP-Telefone/APs können das Limit überschreiten.
+Auswirkung: APs oder Kameras fallen aus, Switch schaltet Ports ab.
+Gegenmaßnahmen: PoE-Budget prüfen, Geräte mit niedrigeren PoE-Klassen wählen, PoE-Injektoren/zusätzliche Switches vorsehen, Lastplan (Zeitfenster, Priorisierung).
+
+5) Energieverfügbarkeit & Spitzenlasten
+
+Problem: USV/Wechselrichter/Generator dimensionieren; beim Booten/Anlauf können Verbraucher kurzzeitig Spitzen ziehen (z. B. Starlink-Dish, Generatorload).
+Auswirkung: USV-Bypass, Spannungseinbrüche, Resets.
+Gegenmaßnahmen: Lastmanagement (sequenzielles Starten), ausreichige USV-Kapazität, Soft-start/Spannungsbegrenzung, Generator-Automation.
+
+6) Antennen-/Sichtlinie (SAT, Funk)
+
+Problem: Satelliten- und Funkantennen benötigen freie Sicht; Bäume, Gebäude, Topographie, personelle Aufstellfehler schränken Empfang ein.
+Auswirkung: Verbindungsabbrüche, reduzierte Bandbreite.
+Gegenmaßnahmen: feste Montagepunkte, ausklappbare Mastoptionen, Standard-Checkliste (Horizon Clearance), alternative Antennen-Positionen, ggf. höhere Mastausleger.
+
+7) Frequenzinterferenz & Spektrumsregulierung
+
+Problem: Lokale Interferenzen (andere Funkdienste), gesetzliche Restriktionen (Lizenzpflichten, BOS-Frequenzen).
+Auswirkung: Störungsanfälligkeit, rechtliche Probleme bei Nutzung nicht zugelassener Frequenzen.
+Gegenmaßnahmen: Frequenzplanung, Koordinierung mit Behörden, Nutzung zugelassener Bandbreiten, Filter/Surveillance-Tools.
+
+8) Hardware-CPU / Speicher / Storage (Server, Gateway)
+
+Problem: Mini-Server oder Firewalls sind je nach Modell limitiert (Max. Sessions, NAT-Durchsatz, VPN-Durchsatz).
+Auswirkung: Firewall/Router wird Bottleneck (z. B. VPN-Verbindungen, viele NAT-Sessions).
+Gegenmaßnahmen: Auswahl eines Servers/Appliance mit ausreichender Performance (konkrete Anforderungen an Concurrent Sessions / VPN Durchsatz festlegen), Monitoring, ggf. Load-Balancing oder Backup-Appliance.
+
+9) Sicherheit / Cyber-Risiken
+
+Problem: Offene Netze oder schlechte Konfiguration führen zu Kompromittierung (Malware, Datenabfluss).
+Auswirkung: Datenverlust, Missbrauch, Störung kritischer Systeme.
+Gegenmaßnahmen: Firewall + VPN, rollenbasierte Access-Kontrolle, regelmäßige Patches (Offline-Update-Prozess definieren), Monitoring & Logging, Whitelisting.
+
+10) Skalierbarkeit & physische Schnittstellen
+
+Problem: physische Ports (RJ45), Rack-Platz, Batterieplatz limitieren Erweiterungen vor Ort.
+Auswirkung: Bei Bedarf an mehr Geräten/Modulen sind Umbauten nötig.
+Gegenmaßnahmen: Reservierter Platz in Rack-Layout, Patchpanel-Reserve, modulare Erweiterungsoptionen (externe PoE-Switches, zusätzliche Batterie-Units).
+
+11) Software-Management und Fachpersonal
+
+Problem: Bedienpersonal muss mit GUI/CLI umgehen können; fehlerhafte Konfigurationen sind häufige Ursache für Ausfälle.
+Auswirkung: längere Downtimes, Fehlbedienungen.
+Gegenmaßnahmen: klare Checklisten, vorgefertigte Konfigurationsprofile, Training (Qualifizierungskonzept), Remote-Support-Prozeduren.
